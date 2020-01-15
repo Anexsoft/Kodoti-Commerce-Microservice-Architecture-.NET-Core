@@ -72,7 +72,7 @@ namespace Order.Service.EventHandlers
             // Header information
             entry.Status = Common.Enums.OrderStatus.Pending;
             entry.PaymentType = notification.PaymentType;
-            entry.CustomerId = notification.CustomerId;
+            entry.ClientId = notification.ClientId;
             entry.CreatedAt = DateTime.UtcNow;
 
             // Sum

@@ -69,19 +69,37 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Common.Paging", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05. Common", "05. Common", "{48454336-B3F2-4055-BB7A-1ECCD493E008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Common", "src\Services\Catalog\Catalog.Common\Catalog.Common.csproj", "{AE0EC46F-CD23-4798-96DE-CCBAE9A65E17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Common", "src\Services\Catalog\Catalog.Common\Catalog.Common.csproj", "{AE0EC46F-CD23-4798-96DE-CCBAE9A65E17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{50FD2963-F823-47A2-88DE-36890F8A75AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Gateway.WebClient", "src\Gateways\Api.Gateway.WebClient\Api.Gateway.WebClient.csproj", "{F0F63EFC-4D89-460A-A6EC-D777EDF0AA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway.WebClient", "src\Gateways\Api.Gateway.WebClient\Api.Gateway.WebClient.csproj", "{F0F63EFC-4D89-460A-A6EC-D777EDF0AA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Gateway.Models", "src\Gateways\Api.Gateway.Models\Api.Gateway.Models.csproj", "{E2D457AB-4691-4D9F-932F-C2DDB77C1CA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway.Models", "src\Gateways\Api.Gateway.Models\Api.Gateway.Models.csproj", "{E2D457AB-4691-4D9F-932F-C2DDB77C1CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Gateway.Proxies", "src\Gateways\Api.Gateway.Proxies\Api.Gateway.Proxies.csproj", "{630BC143-B587-4FCF-A114-1EFDF9B9232C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway.Proxies", "src\Gateways\Api.Gateway.Proxies\Api.Gateway.Proxies.csproj", "{630BC143-B587-4FCF-A114-1EFDF9B9232C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Gateway.WebClient.Proxy", "src\Gateways\Api.Gateway.WebClient.Proxy\Api.Gateway.WebClient.Proxy.csproj", "{A8504F89-E318-4472-898E-D68DB34D6FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway.WebClient.Proxy", "src\Gateways\Api.Gateway.WebClient.Proxy\Api.Gateway.WebClient.Proxy.csproj", "{A8504F89-E318-4472-898E-D68DB34D6FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clients.WebClient", "src\Clients\Clients.WebClient\Clients.WebClient.csproj", "{028B021A-6038-4F2A-89DC-E89F54E6D6EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clients.WebClient", "src\Clients\Clients.WebClient\Clients.WebClient.csproj", "{028B021A-6038-4F2A-89DC-E89F54E6D6EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. API", "01. API", "{A64656FE-D4D4-4845-9E55-5A08A84FC87C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Services", "02. Services", "{4BF69B81-B4D2-4E87-BA60-71D1D6B8A139}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Persistence", "03. Persistence", "{C454F27E-8B9E-4730-83C0-A2CE3DD511A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Models", "04. Models", "{F57335A7-EFBB-439C-8A31-15969FDD4EF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Domain", "src\Services\Customer\Customer.Domain\Customer.Domain.csproj", "{2F17F0F6-6F5F-4607-8D24-4524FB9794A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Persistence.Database", "src\Services\Customer\Customer.Persistence.Database\Customer.Persistence.Database.csproj", "{80240172-554F-4699-9A9D-AA49B236A448}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Service.EventHandlers", "src\Services\Customer\Customer.Service.EventHandlers\Customer.Service.EventHandlers.csproj", "{3AB28430-1AFF-408E-B961-E8434B5DED6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Service.Queries", "src\Services\Customer\Customer.Service.Queries\Customer.Service.Queries.csproj", "{4EDA6890-9ACA-42E4-9B13-D7807A871A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.Api", "src\Services\Customer\Customer.Api\Customer.Api.csproj", "{284C0F8E-1B20-4643-8B71-D4FFF4334D86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -173,6 +191,26 @@ Global
 		{028B021A-6038-4F2A-89DC-E89F54E6D6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028B021A-6038-4F2A-89DC-E89F54E6D6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028B021A-6038-4F2A-89DC-E89F54E6D6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F17F0F6-6F5F-4607-8D24-4524FB9794A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F17F0F6-6F5F-4607-8D24-4524FB9794A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F17F0F6-6F5F-4607-8D24-4524FB9794A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F17F0F6-6F5F-4607-8D24-4524FB9794A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80240172-554F-4699-9A9D-AA49B236A448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80240172-554F-4699-9A9D-AA49B236A448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80240172-554F-4699-9A9D-AA49B236A448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80240172-554F-4699-9A9D-AA49B236A448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB28430-1AFF-408E-B961-E8434B5DED6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB28430-1AFF-408E-B961-E8434B5DED6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB28430-1AFF-408E-B961-E8434B5DED6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB28430-1AFF-408E-B961-E8434B5DED6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDA6890-9ACA-42E4-9B13-D7807A871A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDA6890-9ACA-42E4-9B13-D7807A871A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDA6890-9ACA-42E4-9B13-D7807A871A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDA6890-9ACA-42E4-9B13-D7807A871A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284C0F8E-1B20-4643-8B71-D4FFF4334D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284C0F8E-1B20-4643-8B71-D4FFF4334D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284C0F8E-1B20-4643-8B71-D4FFF4334D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284C0F8E-1B20-4643-8B71-D4FFF4334D86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +253,15 @@ Global
 		{630BC143-B587-4FCF-A114-1EFDF9B9232C} = {2189414E-74FF-40AF-AB68-E27CDCB3337F}
 		{A8504F89-E318-4472-898E-D68DB34D6FD6} = {50FD2963-F823-47A2-88DE-36890F8A75AC}
 		{028B021A-6038-4F2A-89DC-E89F54E6D6EB} = {44F6171F-5881-4406-B65E-CFFE2D49DC53}
+		{A64656FE-D4D4-4845-9E55-5A08A84FC87C} = {01654F56-1FC3-417F-A724-FDD8556D07D3}
+		{4BF69B81-B4D2-4E87-BA60-71D1D6B8A139} = {01654F56-1FC3-417F-A724-FDD8556D07D3}
+		{C454F27E-8B9E-4730-83C0-A2CE3DD511A2} = {01654F56-1FC3-417F-A724-FDD8556D07D3}
+		{F57335A7-EFBB-439C-8A31-15969FDD4EF9} = {01654F56-1FC3-417F-A724-FDD8556D07D3}
+		{2F17F0F6-6F5F-4607-8D24-4524FB9794A7} = {F57335A7-EFBB-439C-8A31-15969FDD4EF9}
+		{80240172-554F-4699-9A9D-AA49B236A448} = {C454F27E-8B9E-4730-83C0-A2CE3DD511A2}
+		{3AB28430-1AFF-408E-B961-E8434B5DED6C} = {4BF69B81-B4D2-4E87-BA60-71D1D6B8A139}
+		{4EDA6890-9ACA-42E4-9B13-D7807A871A79} = {4BF69B81-B4D2-4E87-BA60-71D1D6B8A139}
+		{284C0F8E-1B20-4643-8B71-D4FFF4334D86} = {A64656FE-D4D4-4845-9E55-5A08A84FC87C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {212CBF69-1C98-4263-8E30-BC22F341E1BE}

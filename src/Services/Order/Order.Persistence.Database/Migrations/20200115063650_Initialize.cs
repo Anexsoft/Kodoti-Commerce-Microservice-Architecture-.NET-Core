@@ -19,7 +19,7 @@ namespace Order.Persistence.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(nullable: false),
                     PaymentType = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false),
+                    ClientId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     Total = table.Column<decimal>(nullable: false)
                 },

@@ -6,11 +6,12 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Api.Gateway.Proxies.Order
+namespace Api.Gateway.Proxies
 {
     public interface IOrderProxy
     {
         Task<DataCollection<OrderDto>> GetAllAsync(int page, int take);
+        Task<OrderDto> GetAsync(int id);
     }
 
     public class OrderProxy : IOrderProxy
@@ -32,6 +33,20 @@ namespace Api.Gateway.Proxies.Order
             request.EnsureSuccessStatusCode();
 
             return JsonSerializer.Deserialize<DataCollection<OrderDto>>(
+                await request.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }
+            );
+        }
+
+        public async Task<OrderDto> GetAsync(int id)
+        {
+            var request = await _httpClient.GetAsync($"{_apiUrls.OrderUrl}v1/orders/{id}");
+            request.EnsureSuccessStatusCode();
+
+            return JsonSerializer.Deserialize<OrderDto>(
                 await request.Content.ReadAsStringAsync(),
                 new JsonSerializerOptions
                 {

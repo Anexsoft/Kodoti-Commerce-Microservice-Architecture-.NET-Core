@@ -12,6 +12,7 @@ namespace Order.Service.Queries
     public interface IOrderQueryService
     {
         Task<DataCollection<OrderDto>> GetAllAsync(int page, int take);
+        Task<OrderDto> GetAsync(int id);
     }
 
     public class OrderQueryService : IOrderQueryService
@@ -32,6 +33,11 @@ namespace Order.Service.Queries
                 .GetPagedAsync(page, take);
 
             return collection.MapTo<DataCollection<OrderDto>>();
+        }
+
+        public async Task<OrderDto> GetAsync(int id)
+        {
+            return (await _context.Orders.Include(x => x.Items).SingleAsync(x => x.OrderId == id)).MapTo<OrderDto>();
         }
     }
 }

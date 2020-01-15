@@ -33,6 +33,12 @@ namespace Order.Api.Controllers
             return await _orderQueryService.GetAllAsync(page, take);
         }
 
+        [HttpGet("{id}")]
+        public async Task<OrderDto> Get(int id)
+        {
+            return await _orderQueryService.GetAsync(id);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(OrderCreateCommand notification)
         {

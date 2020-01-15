@@ -5,6 +5,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service.Common.Collection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Catalog.Api.Controllers
@@ -28,9 +31,22 @@ namespace Catalog.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<DataCollection<ProductDto>> GetAll(int page = 1, int take = 10) 
+        public async Task<DataCollection<ProductDto>> GetAll(int page = 1, int take = 10, string ids = null)
         {
-            return await _productQueryService.GetAllAsync(page, take);
+            IEnumerable<int> products = null;
+
+            if (!string.IsNullOrEmpty(ids))
+            {
+                products = ids.Split(',').Select(x => Convert.ToInt32(x));
+            }
+
+            return await _productQueryService.GetAllAsync(page, take, products);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ProductDto> Get(int id)
+        {
+            return await _productQueryService.GetAsync(id);
         }
 
         [HttpPost]

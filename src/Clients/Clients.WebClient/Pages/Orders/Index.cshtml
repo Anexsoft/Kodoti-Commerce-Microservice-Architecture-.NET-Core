@@ -1,5 +1,6 @@
-﻿@page "/Orders"
-@model IndexModel
+﻿@page
+@model Clients.WebClient.Pages.Orders.IndexModel
+
 @{
     ViewData["Title"] = "Order Page";
 }
@@ -13,10 +14,10 @@
     <thead>
         <tr>
             <th># Orden</th>
-            <th style="width:200px;">Cliente</th>
+            <th style="width:250px;">Cliente</th>
             <th style="width:140px;">Tipo de pago</th>
             <th style="width:100px;">Estado</th>
-            <th style="width:140px;" class="text-right" style="width:100px;">Total</th>
+            <th style="width:140px;" class="text-right">Total</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,7 @@
                 <td>
                     <a href="~/orders/@item.OrderId">@item.OrderNumber</a>
                 </td>
-                <td>@item.CustomerId</td>
+                <td>@item.Client.Name</td>
                 <td>@item.PaymentType</td>
                 <td>@item.Status</td>
                 <td class="text-right">@item.Total</td>
@@ -34,3 +35,17 @@
         }
     </tbody>
 </table>
+
+@if (Model.Orders.Pages > 1) 
+{
+    <nav>
+        <ul class="pagination justify-content-center">
+            @for (var index = 1; index <= Model.Orders.Pages; index++)
+            {
+                <li class="page-item @(index == Model.Orders.Page ? "active" : "")">
+                    <a class="page-link" asp-page="/Orders/Index" asp-route-currentpage="@index">@index</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

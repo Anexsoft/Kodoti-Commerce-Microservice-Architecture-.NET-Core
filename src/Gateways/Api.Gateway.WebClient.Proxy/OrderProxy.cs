@@ -9,6 +9,12 @@ namespace Api.Gateway.WebClient.Proxy
 {
     public interface IOrderProxy
     {
+        /// <summary>
+        /// Este método no trae la información de los productos.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
         Task<DataCollection<OrderDto>> GetAllAsync(int page, int take);
     }
 
@@ -27,7 +33,7 @@ namespace Api.Gateway.WebClient.Proxy
 
         public async Task<DataCollection<OrderDto>> GetAllAsync(int page, int take)
         {
-            var request = await _httpClient.GetAsync($"{_apiGatewayUrl}v1/orders?page={page}&take={take}");
+            var request = await _httpClient.GetAsync($"{_apiGatewayUrl}orders?page={page}&take={take}");
             request.EnsureSuccessStatusCode();
 
             return JsonSerializer.Deserialize<DataCollection<OrderDto>>(

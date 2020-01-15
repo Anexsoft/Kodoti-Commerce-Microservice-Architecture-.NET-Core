@@ -16,7 +16,7 @@ namespace Order.Service.Queries.DTOs
         }
         public OrderStatus Status { get; set; }
         public OrderPayment PaymentType { get; set; }
-        public int CustomerId { get; set; }
+        public int ClientId { get; set; }
         public IEnumerable<OrderDetailDto> Items { get; set; } = new List<OrderDetailDto>();
         public DateTime CreatedAt { get; set; }
         public decimal Total { get; set; }

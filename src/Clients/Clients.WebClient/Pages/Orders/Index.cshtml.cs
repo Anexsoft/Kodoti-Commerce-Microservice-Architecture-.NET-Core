@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Api.Gateway.WebClient.Proxy;
 using Api.Gateway.Models;
 using Api.Gateway.Models.Order.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Clients.WebClient.Pages.Orders
 {
@@ -13,6 +14,8 @@ namespace Clients.WebClient.Pages.Orders
         private readonly IOrderProxy _orderProxy;
 
         public DataCollection<OrderDto> Orders { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
 
         public IndexModel(
             ILogger<IndexModel> logger,
@@ -25,7 +28,7 @@ namespace Clients.WebClient.Pages.Orders
 
         public async Task OnGet()
         {
-            Orders = await _orderProxy.GetAllAsync(1, 100);
+            Orders = await _orderProxy.GetAllAsync(CurrentPage, 10);
         }
     }
 }
