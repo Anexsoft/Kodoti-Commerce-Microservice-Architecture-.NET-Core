@@ -1,0 +1,36 @@
+﻿@page "/Orders"
+@model IndexModel
+@{
+    ViewData["Title"] = "Order Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Órdenes</h1>
+    <p>Todas las órdenes que ha registrado en el sistema</p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th># Orden</th>
+            <th style="width:200px;">Cliente</th>
+            <th style="width:140px;">Tipo de pago</th>
+            <th style="width:100px;">Estado</th>
+            <th style="width:140px;" class="text-right" style="width:100px;">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders.Items) 
+        {
+            <tr>
+                <td>
+                    <a href="~/orders/@item.OrderId">@item.OrderNumber</a>
+                </td>
+                <td>@item.CustomerId</td>
+                <td>@item.PaymentType</td>
+                <td>@item.Status</td>
+                <td class="text-right">@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
