@@ -5,9 +5,12 @@ using Api.Gateway.WebClient.Proxy;
 using Api.Gateway.Models;
 using Api.Gateway.Models.Order.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Clients.WebClient.Pages.Orders
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;

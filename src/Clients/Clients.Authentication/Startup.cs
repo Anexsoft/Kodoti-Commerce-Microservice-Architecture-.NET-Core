@@ -1,12 +1,14 @@
-using Api.Gateway.WebClient.Proxy;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Client.WebClient
+namespace Clients.Authentication
 {
     public class Startup
     {
@@ -20,16 +22,7 @@ namespace Client.WebClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Proxies
-            services.AddHttpClient<IOrderProxy, OrderProxy>();
-
-            // Razor Pages & MVC
             services.AddRazorPages();
-            services.AddControllers();
-
-            // Add Cookie Authentication
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,15 +38,14 @@ namespace Client.WebClient
             }
 
             app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="text-center" style="margin-top:40%;">
+            <img src="~/logo.png" />
+        </div>
+        <hr />
+
+        <form asp-page-handler="onPost" asp-route-ReturnBaseUrl="@Model.ReturnBaseUrl">
+            @if (Model.HasInvalidAccess)
+            {
+                <div class="alert alert-danger">Acceso denegado</div>
+            }
+
+            <div class="form-group">
+                <input asp-for="model.Email" name="Email" type="email" required class="form-control" placeholder="E-mail">
+            </div>
+            <div class="form-group">
+                <input asp-for="model.Password" name="Password" type="password" required class="form-control" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
