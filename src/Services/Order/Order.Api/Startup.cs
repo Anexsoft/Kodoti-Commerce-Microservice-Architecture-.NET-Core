@@ -1,9 +1,12 @@
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Order.Persistence.Database;
 using Order.Service.Proxies;
@@ -32,6 +35,13 @@ namespace Order.Api
                     x => x.MigrationsHistoryTable("__EFMigrationsHistory", "Order")
                 )
             );
+
+            // Health check
+            services.AddHealthChecks()
+                        .AddCheck("self", () => HealthCheckResult.Healthy())
+                        .AddDbContextCheck<ApplicationDbContext>(typeof(ApplicationDbContext).Name);
+
+            services.AddHealthChecksUI();
 
             // ApiUrls
             services.Configure<ApiUrls>(opts => Configuration.GetSection("ApiUrls").Bind(opts));
@@ -64,6 +74,12 @@ namespace Order.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecksUI();
             });
         }
     }

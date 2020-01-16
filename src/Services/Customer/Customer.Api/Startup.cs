@@ -1,10 +1,13 @@
 using Customer.Persistence.Database;
+using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Order.Service.Queries;
 using System.Reflection;
@@ -31,6 +34,13 @@ namespace Customer.Api
                 )
             );
 
+            // Health check
+            services.AddHealthChecks()
+                        .AddCheck("self", () => HealthCheckResult.Healthy())
+                        .AddDbContextCheck<ApplicationDbContext>(typeof(ApplicationDbContext).Name);
+
+            services.AddHealthChecksUI();
+
             // Event handlers
             services.AddMediatR(Assembly.Load("Customer.Service.EventHandlers"));
 
@@ -56,6 +66,12 @@ namespace Customer.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/hc", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                endpoints.MapHealthChecksUI();
             });
         }
     }
