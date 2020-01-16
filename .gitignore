@@ -4,8 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Custom paths
-01-Client/FrontEnd/Cache
-02-Api/Auth.Api/App_Locale/*.xml
+healthchecks/
 
 # User-specific files
 *.suo
