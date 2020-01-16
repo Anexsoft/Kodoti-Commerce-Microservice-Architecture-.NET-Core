@@ -1,6 +1,8 @@
 ﻿using Identity.Service.Queries;
 using Identity.Service.Queries.DTOs;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Service.Common.Collection;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("v1/users")]
     public class UserController : ControllerBase

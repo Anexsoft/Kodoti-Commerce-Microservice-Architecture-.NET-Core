@@ -21,6 +21,8 @@ namespace Api.Gateway.WebClient.Config
 
         public static IServiceCollection AddProxiesRegistration(this IServiceCollection service, IConfiguration configuration)
         {
+            service.AddHttpContextAccessor();
+
             service.AddHttpClient<IOrderProxy, OrderProxy>();
             service.AddHttpClient<ICustomerProxy, CustomerProxy>();
             service.AddHttpClient<ICatalogProxy, CatalogProxy>();

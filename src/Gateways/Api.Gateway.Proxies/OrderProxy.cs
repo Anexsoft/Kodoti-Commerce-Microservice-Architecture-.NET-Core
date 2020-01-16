@@ -1,7 +1,9 @@
 ﻿using Api.Gateway.Models;
 using Api.Gateway.Models.Order.DTOs;
 using Api.Gateway.Models.Orders.Commands;
+using Api.Gateway.Proxies.Config;
 using Api.Gateway.Proxy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Text;
@@ -24,8 +26,11 @@ namespace Api.Gateway.Proxies
 
         public OrderProxy(
             HttpClient httpClient,
-            IOptions<ApiUrls> apiUrls)
+            IOptions<ApiUrls> apiUrls,
+            IHttpContextAccessor httpContextAccessor)
         {
+            httpClient.AddBearerToken(httpContextAccessor);
+
             _httpClient = httpClient;
             _apiUrls = apiUrls.Value;
         }

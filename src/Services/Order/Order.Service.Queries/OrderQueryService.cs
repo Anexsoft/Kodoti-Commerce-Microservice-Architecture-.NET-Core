@@ -29,7 +29,7 @@ namespace Order.Service.Queries
         {
             var collection = await _context.Orders
                 .Include(x => x.Items)
-                .OrderBy(x => x.OrderId)
+                .OrderByDescending(x => x.OrderId)
                 .GetPagedAsync(page, take);
 
             return collection.MapTo<DataCollection<OrderDto>>();

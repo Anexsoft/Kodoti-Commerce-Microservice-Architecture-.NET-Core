@@ -1,6 +1,8 @@
 ﻿using Api.Gateway.Models;
 using Api.Gateway.Models.Catalog.DTOs;
+using Api.Gateway.Proxies.Config;
 using Api.Gateway.Proxy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -22,8 +24,11 @@ namespace Api.Gateway.Proxies
 
         public CatalogProxy(
             HttpClient httpClient,
-            IOptions<ApiUrls> apiUrls)
+            IOptions<ApiUrls> apiUrls,
+            IHttpContextAccessor httpContextAccessor)
         {
+            httpClient.AddBearerToken(httpContextAccessor);
+
             _httpClient = httpClient;
             _apiUrls = apiUrls.Value;
         }
