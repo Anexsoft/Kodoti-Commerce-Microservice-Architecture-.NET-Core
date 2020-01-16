@@ -10,10 +10,10 @@ namespace Order.Service.Proxies.Catalog.Commands
 
     public class ProductInStockUpdateStockCommand
     {
-        public IEnumerable<ProductInStockUpdate> Items { get; set; } = new List<ProductInStockUpdate>();
+        public IEnumerable<ProductInStockUpdateItem> Items { get; set; } = new List<ProductInStockUpdateItem>();
     }
 
-    public class ProductInStockUpdate
+    public class ProductInStockUpdateItem
     {
         public int ProductId { get; set; }
         public int Stock { get; set; }

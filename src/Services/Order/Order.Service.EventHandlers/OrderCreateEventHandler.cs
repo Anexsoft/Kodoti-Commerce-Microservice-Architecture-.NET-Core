@@ -44,7 +44,7 @@ namespace Order.Service.EventHandlers
                 // 04. Update Stocks
                 await _catalogProxy.UpdateStockAsync(new ProductInStockUpdateStockCommand
                 {
-                    Items = notification.Items.Select(x => new ProductInStockUpdate
+                    Items = notification.Items.Select(x => new ProductInStockUpdateItem
                     {
                         ProductId = x.ProductId,
                         Stock = x.Quantity,

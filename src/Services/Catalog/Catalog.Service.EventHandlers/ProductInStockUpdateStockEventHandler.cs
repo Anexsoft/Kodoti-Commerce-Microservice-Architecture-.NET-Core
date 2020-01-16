@@ -1,6 +1,7 @@
 ﻿using Catalog.Domain;
 using Catalog.Persistence.Database;
 using Catalog.Service.EventHandlers.Commands;
+using Catalog.Service.EventHandlers.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -35,7 +36,7 @@ namespace Catalog.Service.EventHandlers
                 {
                     if (entry == null || item.Stock > entry.Stock)
                     {
-                        throw new Exception($"Product {entry.ProductId} - doens't have enough stock");
+                        throw new ProductInStockUpdateStockCommandException($"Product {entry.ProductId} - doens't have enough stock");
                     }
 
                     entry.Stock -= item.Stock;
