@@ -2,23 +2,10 @@
 using Api.Gateway.Models.Customer.DTOs;
 using System;
 using System.Collections.Generic;
+using static Api.Gateway.Models.Order.Commons.Enums;
 
 namespace Api.Gateway.Models.Order.DTOs
 {
-    public enum OrderStatus
-    {
-        Cancel,
-        Pending,
-        Approved
-    }
-
-    public enum OrderPayment
-    {
-        CreditCard,
-        PayPal,
-        BankTransfer
-    }
-
     public class OrderDto
     {
         public int OrderId { get; set; }

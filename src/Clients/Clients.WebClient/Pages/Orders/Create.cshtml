@@ -1,0 +1,162 @@
+﻿@page "/orders/create"
+@model Clients.WebClient.Pages.Orders.CreateModel
+
+@{
+    ViewData["Title"] = "Nueva orden";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+<p>Creación de una nueva orden de compra</p>
+
+<div id="app">
+    <div v-if="isLoading" class="text-center mt-5 mb-5 display-4">
+        <div v-if="!hasError">.. procesando la orden ..</div>
+        <div v-else>.. no se pudo crear la orden ..</div>
+    </div>
+
+    <template v-else>
+        <div class="form-group">
+            <label>Método de pago</label>
+            <select v-model.number="model.paymentType" class="form-control">
+                <option :value="null" selected disabled>Seleccione un método de pago</option>
+                <option v-for="item in paymentTypes" :value="item.value">{{item.label}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Cliente</label>
+            <select v-model.number="model.clientId" class="form-control">
+                <option :value="null" selected disabled>Seleccione un cliente</option>
+                <option v-for="item in clients" :value="item.ClientId">{{item.Name}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Producto</label>
+            <div class="input-group mb-3">
+                <select v-model.number="selectProduct" class="form-control">
+                    <option :value="null" selected disabled>Seleccione un producto</option>
+                    <option v-for="item in products" :value="item.ProductId">{{item.Name}}</option>
+                </select>
+                <div class="input-group-prepend">
+                    <button v-on:click="addItem" class="btn btn-outline-secondary" type="button">Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <table v-if="model.items.length" class="table mt-5 mb-3">
+            <thead>
+                <tr>
+                    <th style="width:30px;"></th>
+                    <th>Item</th>
+                    <th style="width:120px;" class="text-right">Precio</th>
+                    <th style="width:120px;" class="text-right">Cantidad</th>
+                    <th style="width:150px;" class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in model.items">
+                    <td>
+                        <a v-on:click="removeItem(item.productId)" class="text-danger">Retirar</a>
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td class="text-right">{{item.price|currency}}</td>
+                    <td class="text-right">
+                        <input v-model.number="item.quantity" type="number" min="1" max="5" />
+                    </td>
+                    <td class="text-right">{{item.price * item.quantity|currency}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td class="text-right" style="font-size:1.2em;">{{total|currency}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div v-if="model.items.length > 0 && model.paymentType !== null && model.clientId !== null" class="text-center">
+            <button v-on:click="save" type="button" class="btn btn-primary btn-block text-light btn-lg">Crear orden</button>
+        </div>
+    </template>
+</div>
+
+@section Scripts  {
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                paymentTypes: [
+                    { value: 0, label: "Tarjeta de crédito" },
+                    { value: 1, label: "PayPal" },
+                    { value: 2, label: "Trasnferencia bancaria" }
+                ],
+                clients: @Html.Raw(JsonSerializer.Serialize(Model.Clients.Items)),
+                products: @Html.Raw(JsonSerializer.Serialize(Model.Products.Items)),
+                model: {
+                    clientId: null,
+                    paymentType: null,
+                    items: []
+                },
+                selectProduct: null,
+                isLoading: false,
+                hasError: false
+            },
+            computed: {
+                total() {
+                    let total = 0;
+
+                    this.model.items.forEach(x => total += x.price * x.quantity);
+
+                    return total;
+                }
+            },
+            methods: {
+                addItem() {
+                    if (this.selectProduct === null) return;
+                    if (this.model.items.some(x => x.productId === this.selectProduct)) return;
+
+                    let product = this.products.find(x => x.ProductId === this.selectProduct);
+
+                    this.model.items.push({
+                        productId: product.ProductId,
+                        name: product.Name,
+                        price: product.Price,
+                        quantity: 1
+                    });
+
+                    this.selectProduct = null;
+                },
+                removeItem(id) {
+                    this.model.items = this.model.items.filter(x => x.productId !== id);
+                },
+                save() {
+                    let self = this;
+                    self.isLoading = true;
+
+                    fetch('/orders/create', {
+                      method: 'POST',
+                      body: JSON.stringify(self.model),
+                      headers:{
+                        'Content-Type': 'application/json; charset=utf-8'
+                      }
+                    }).then(response => response.ok)
+                        .catch(error => console.error('Error:', error))
+                        .then(response => {
+                            console.log(response)
+                            if (response) {
+                                window.location.href = '/orders'
+                            } else {
+                                self.hasError = true;
+                            }
+                        });
+                }
+            },
+            filters: {
+                currency(value) {
+                    return 'US$ ' + parseFloat(value).toFixed(2);
+                }
+            }
+        })
+    </script>
+}

@@ -119,7 +119,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Service.EventHandl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Api", "src\Services\Identity\Identity.Api\Identity.Api.csproj", "{E658C5CE-33C9-4009-B1DB-587576FD213B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clients.Authentication", "src\Clients\Clients.Authentication\Clients.Authentication.csproj", "{7F16E4DA-D0BF-4ABB-B793-8263D6A333DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clients.Authentication", "src\Clients\Clients.Authentication\Clients.Authentication.csproj", "{7F16E4DA-D0BF-4ABB-B793-8263D6A333DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

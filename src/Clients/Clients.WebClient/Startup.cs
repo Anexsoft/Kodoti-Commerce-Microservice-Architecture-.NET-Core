@@ -1,10 +1,13 @@
 using Api.Gateway.WebClient.Proxy;
+using Api.Gateway.WebClient.Proxy.Config;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 
 namespace Client.WebClient
 {
@@ -21,10 +24,15 @@ namespace Client.WebClient
         public void ConfigureServices(IServiceCollection services)
         {
             // Proxies
+            services.AddSingleton(new ApiGatewayUrl(Configuration.GetValue<string>("ApiGatewayUrl")));
+            services.AddHttpContextAccessor();
+
             services.AddHttpClient<IOrderProxy, OrderProxy>();
+            services.AddHttpClient<IProductProxy, ProductProxy>();
+            services.AddHttpClient<IClientProxy, ClientProxy>();
 
             // Razor Pages & MVC
-            services.AddRazorPages();
+            services.AddRazorPages(o => o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute()));
             services.AddControllers();
 
             // Add Cookie Authentication

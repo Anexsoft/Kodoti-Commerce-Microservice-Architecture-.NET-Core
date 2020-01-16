@@ -1,12 +1,16 @@
 ﻿using Api.Gateway.Models;
 using Api.Gateway.Models.Order.DTOs;
+using Api.Gateway.Models.Orders.Commands;
 using Api.Gateway.Proxies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Api.Gateway.WebClient.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("orders")]
     public class OrderController : ControllerBase
@@ -80,6 +84,13 @@ namespace Api.Gateway.WebClient.Controllers
             }
 
             return result;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(OrderCreateCommand command)
+        {
+            await _orderProxy.CreateAsync(command);
+            return Ok();
         }
     }
 }

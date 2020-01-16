@@ -1,7 +1,13 @@
 ﻿using Api.Gateway.Proxies;
 using Api.Gateway.Proxy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Api.Gateway.WebClient.Config
 {

@@ -39,6 +39,7 @@ namespace Clients.WebClient.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.nameid),
                 new Claim(ClaimTypes.Name, user.unique_name),
                 new Claim(ClaimTypes.Email, user.email),
+                new Claim("access_token", access_token)
             };
 
             var claimsIdentity = new ClaimsIdentity(

@@ -1,11 +1,14 @@
 ﻿using Api.Gateway.Models;
 using Api.Gateway.Models.Customer.DTOs;
 using Api.Gateway.Proxies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Api.Gateway.WebClient.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("clients")]
     public class ClientController : ControllerBase

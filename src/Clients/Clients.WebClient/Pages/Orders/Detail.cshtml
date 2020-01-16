@@ -1,0 +1,41 @@
+﻿@page "/orders/{id}"
+@model Clients.WebClient.Pages.Orders.DetailModel
+
+@{
+    ViewData["Title"] = Model.Order.OrderNumber;
+}
+
+<h1 class="display-4">@Model.Order.OrderNumber</h1>
+<p>Información de la orden de compra</p>
+
+<p><b>Cliente</b>: @Model.Order.Client.Name</p>
+<p><b>Método de pago</b>: @Model.Order.PaymentType</p>
+<p><b>Estado</b>: @Model.Order.Status</p>
+
+<table class="table table-hover mt-5">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th class="text-right">Precio</th>
+            <th class="text-right">Cantidad</th>
+            <th class="text-right">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Order.Items)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td style="width:100px;" class="text-right">@item.UnitPrice</td>
+                <td style="width:100px;" class="text-right">@item.Quantity</td>
+                <td style="width:140px;" class="text-right">@item.Total</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"></td>
+            <td class="text-right font-weight-bold" style="font-size:1.2em;">@Model.Order.Total</td>
+        </tr>
+    </tfoot>
+</table>

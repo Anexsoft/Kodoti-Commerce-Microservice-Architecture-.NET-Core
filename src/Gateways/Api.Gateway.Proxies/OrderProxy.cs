@@ -1,8 +1,10 @@
 ﻿using Api.Gateway.Models;
 using Api.Gateway.Models.Order.DTOs;
+using Api.Gateway.Models.Orders.Commands;
 using Api.Gateway.Proxy;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@ namespace Api.Gateway.Proxies
     {
         Task<DataCollection<OrderDto>> GetAllAsync(int page, int take);
         Task<OrderDto> GetAsync(int id);
+        Task CreateAsync(OrderCreateCommand command);
     }
 
     public class OrderProxy : IOrderProxy
@@ -53,6 +56,18 @@ namespace Api.Gateway.Proxies
                     PropertyNameCaseInsensitive = true
                 }
             );
+        }
+
+        public async Task CreateAsync(OrderCreateCommand command)
+        {
+            var content = new StringContent(
+                JsonSerializer.Serialize(command),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var request = await _httpClient.PostAsync($"{_apiUrls.OrderUrl}v1/orders", content);
+            request.EnsureSuccessStatusCode();
         }
     }
 }
