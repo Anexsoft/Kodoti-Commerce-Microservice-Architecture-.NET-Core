@@ -8,7 +8,7 @@ namespace Catalog.Tests.Config
         public static DbContextOptions<ApplicationDbContext> Get() 
         {
             return new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "Catalog.Db")
+                .UseInMemoryDatabase(databaseName: $"Catalog.Db")
                 .Options;
         }
     }
