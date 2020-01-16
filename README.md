@@ -12,7 +12,7 @@ Actualicen las cadenas de conexión de cada Microservicio por la de ustedes.
 * Identity.Api: localhost:10000
 * Catalog.Api: localhost:20000
 * Customer.Api: localhost:30000
-* Order.Api: localhost:10000
+* Order.Api: localhost:40000
 
 ### 3. Agregar un usuario por defecto a la base de datos
 ```
