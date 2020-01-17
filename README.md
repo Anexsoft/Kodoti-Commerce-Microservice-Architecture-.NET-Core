@@ -1,5 +1,6 @@
 # KODOTI Commerce - Microservice Architecture .NET Core
 Proyecto de ejemplo en el cual veremos como crear órdenes de compra usando una arquitectura orientada a microservicios y .NET Core.
+![kodoti course](https://kodoti.blob.core.windows.net/common/course-microservice-net-architecture.jpg "Curso de Microservicios con .NET Core")
 
 ## ¿Cómo levantar el proyecto?
 ### 1. Cambiar las cadenas de conexión
