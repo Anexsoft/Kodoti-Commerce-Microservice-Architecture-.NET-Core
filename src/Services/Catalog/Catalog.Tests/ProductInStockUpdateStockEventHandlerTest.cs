@@ -28,7 +28,7 @@ namespace Catalog.Tests
         [TestMethod]
         public async Task TryToSubstractStockWhenProductHasStock()
         {
-            var context = new ApplicationDbContext(ApplicationDbContextInMemory.Get());
+            var context = ApplicationDbContextInMemory.Get();
 
             var productInStockId = 1;
             var productId = 1;
@@ -59,7 +59,7 @@ namespace Catalog.Tests
         [ExpectedException(typeof(ProductInStockUpdateStockCommandException))]
         public void TryToSubstractStockWhenProductHasntStock()
         {
-            var context = new ApplicationDbContext(ApplicationDbContextInMemory.Get());
+            var context = ApplicationDbContextInMemory.Get();
 
             var productInStockId = 2;
             var productId = 2;
@@ -82,7 +82,7 @@ namespace Catalog.Tests
                 {
                     Items = new List<ProductInStockUpdateItem> {
                     new ProductInStockUpdateItem {
-                        ProductId = 1,
+                        ProductId = productId,
                         Stock = 2,
                         Action = Common.Enums.ProductInStockAction.Substract
                     }
@@ -101,7 +101,7 @@ namespace Catalog.Tests
         [TestMethod]
         public void TryToAddStockWhenProductExists()
         {
-            var context = new ApplicationDbContext(ApplicationDbContextInMemory.Get());
+            var context = ApplicationDbContextInMemory.Get();
 
             var productInStockId = 3;
             var productId = 3;
@@ -134,7 +134,7 @@ namespace Catalog.Tests
         [TestMethod]
         public void TryToAddStockWhenProductNotExists()
         {
-            var context = new ApplicationDbContext(ApplicationDbContextInMemory.Get());
+            var context = ApplicationDbContextInMemory.Get();
             var command = new ProductInStockUpdateStockEventHandler(context, GetIlogger);
 
             var productId = 4;

@@ -48,8 +48,9 @@ namespace Catalog.Service.EventHandlers
                         throw new ProductInStockUpdateStockCommandException($"Product {entry.ProductId} - doens't have enough stock");
                     }
 
-                    _logger.LogInformation($"--- Substract stock from product {entry.ProductId}");
                     entry.Stock -= item.Stock;
+
+                    _logger.LogInformation($"--- Product {entry.ProductId} - its stock was subtracted and its new stock is {entry.Stock}");
                 }
                 else
                 {

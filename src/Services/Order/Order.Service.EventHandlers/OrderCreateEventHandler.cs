@@ -65,6 +65,8 @@ namespace Order.Service.EventHandlers
 
                 await trx.CommitAsync();
             }
+
+            _logger.LogInformation("--- New order creation ended");
         }
 
         private void PrepareDetail(Domain.Order entry, OrderCreateCommand notification) 

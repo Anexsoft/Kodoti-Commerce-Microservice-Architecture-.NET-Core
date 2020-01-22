@@ -5,11 +5,13 @@ namespace Catalog.Tests.Config
 {
     public static class ApplicationDbContextInMemory
     {
-        public static DbContextOptions<ApplicationDbContext> Get() 
+        public static ApplicationDbContext Get() 
         {
-            return new DbContextOptionsBuilder<ApplicationDbContext>()
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: $"Catalog.Db")
                 .Options;
+
+            return new ApplicationDbContext(options);
         }
     }
 }
