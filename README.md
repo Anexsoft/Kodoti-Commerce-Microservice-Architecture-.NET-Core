@@ -27,4 +27,4 @@ INSERT [Identity].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email]
 
 ## ¿Quiéres aprender más sobre esto?
 Pues tenemos un curso completo donde vemos la teoría y la llevamos a la práctica realizando este proyecto.
-https://www.udemy.com/course/draft/3425180/?referralCode=396CB83F117C145C4D6A
+https://www.udemy.com/course/microservicios-con-net-core-3-hasta-su-publicacion-en-azure/?referralCode=396CB83F117C145C4D6A
